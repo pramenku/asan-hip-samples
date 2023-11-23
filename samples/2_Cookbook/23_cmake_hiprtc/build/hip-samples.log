@@ -1,0 +1,150 @@
+-- The C compiler identification is Clang 17.0.0
+-- The CXX compiler identification is Clang 17.0.0
+-- Check for working C compiler: /opt/rocm/llvm/bin/clang
+-- Check for working C compiler: /opt/rocm/llvm/bin/clang -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /opt/rocm/llvm/bin/clang
+-- Check for working CXX compiler: /opt/rocm/llvm/bin/clang -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Performing Test HIP_CLANG_SUPPORTS_PARALLEL_JOBS
+-- Performing Test HIP_CLANG_SUPPORTS_PARALLEL_JOBS - Success
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/taccuser/asan/samples/2_Cookbook/23_cmake_hiprtc/build
+Scanning dependencies of target test
+[ 50%] Building CXX object CMakeFiles/test.dir/saxpy.cpp.o
+[100%] Linking CXX executable test
+ld.lld: error: undefined symbol: std::allocator<char>::allocator()
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+
+ld.lld: error: undefined symbol: std::allocator<char>::~allocator()
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced 2 more times
+
+ld.lld: error: undefined symbol: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::operator[](unsigned long)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+
+ld.lld: error: undefined symbol: std::cout
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced 1 more times
+
+ld.lld: error: undefined symbol: std::basic_ostream<char, std::char_traits<char>>& std::operator<<<char, std::char_traits<char>, std::allocator<char>>(std::basic_ostream<char, std::char_traits<char>>&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>> const&)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+
+ld.lld: error: undefined symbol: std::basic_ostream<char, std::char_traits<char>>& std::operator<<<std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>>&, char)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+
+ld.lld: error: undefined symbol: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::~basic_string()
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+
+ld.lld: error: undefined symbol: std::basic_ostream<char, std::char_traits<char>>& std::operator<<<std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>>&, char const*)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+
+ld.lld: error: undefined symbol: std::basic_ostream<char, std::char_traits<char>>& std::endl<char, std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>>&)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+
+ld.lld: error: undefined symbol: std::ostream::operator<<(std::ostream& (*)(std::ostream&))
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(main)
+
+ld.lld: error: undefined symbol: std::ios_base::Init::Init()
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(__cxx_global_var_init)
+
+ld.lld: error: undefined symbol: std::ios_base::Init::~Init()
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(__cxx_global_var_init)
+
+ld.lld: error: undefined symbol: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::_M_local_data()
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::basic_string<std::allocator<char>>(unsigned long, char, std::allocator<char> const&))
+
+ld.lld: error: undefined symbol: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::_Alloc_hider::_Alloc_hider(char*, std::allocator<char> const&)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::basic_string<std::allocator<char>>(unsigned long, char, std::allocator<char> const&))
+
+ld.lld: error: undefined symbol: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::_M_construct(unsigned long, char)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::basic_string<std::allocator<char>>(unsigned long, char, std::allocator<char> const&))
+
+ld.lld: error: undefined symbol: __cxa_begin_catch
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(__clang_call_terminate)
+
+ld.lld: error: undefined symbol: std::terminate()
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(__clang_call_terminate)
+
+ld.lld: error: undefined symbol: std::__throw_length_error(char const*)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(std::vector<char const*, std::allocator<char const*>>::_M_check_len(unsigned long, char const*) const)
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(std::vector<char, std::allocator<char>>::_S_check_init_len(unsigned long, std::allocator<char> const&))
+
+ld.lld: error: undefined symbol: std::__throw_bad_alloc()
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(__gnu_cxx::new_allocator<char const*>::allocate(unsigned long, void const*))
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(__gnu_cxx::new_allocator<char>::allocate(unsigned long, void const*))
+
+ld.lld: error: undefined symbol: std::allocator<char>::~allocator()
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char>>::_Alloc_hider::~_Alloc_hider())
+>>> referenced by saxpy.cpp
+>>>               CMakeFiles/test.dir/saxpy.cpp.o:(std::_Vector_base<char, std::allocator<char>>::_Vector_impl::~_Vector_impl())
+
+ld.lld: error: too many errors emitted, stopping now (use --error-limit=0 to see all errors)
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[2]: *** [CMakeFiles/test.dir/build.make:87: test] Error 1
+make[1]: *** [CMakeFiles/Makefile2:76: CMakeFiles/test.dir/all] Error 2
+make: *** [Makefile:84: all] Error 2
+./run_samples.sh: line 343: ./cmake_hiprtc: No such file or directory
+ldd: ./cmake_hiprtc: No such file or directory

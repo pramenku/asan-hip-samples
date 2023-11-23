@@ -1,0 +1,3 @@
+/home/taccuser/asan/samples/1_Utils/hipInfo/build/CMakeFiles/rebuild_cache.dir
+/home/taccuser/asan/samples/1_Utils/hipInfo/build/CMakeFiles/edit_cache.dir
+/home/taccuser/asan/samples/1_Utils/hipInfo/build/CMakeFiles/hipInfo.dir

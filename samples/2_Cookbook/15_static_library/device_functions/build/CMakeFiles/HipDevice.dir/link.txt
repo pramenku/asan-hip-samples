@@ -1,0 +1,2 @@
+/usr/bin/ar qc libHipDevice.a  CMakeFiles/HipDevice.dir/hipDevice.cpp.o
+/usr/bin/ranlib libHipDevice.a

@@ -1,0 +1,201 @@
+/opt/rocm//bin/hipcc -I../../common -fsanitize=address -shared-libsan -c -emit-llvm --cuda-host-only -target x86_64-linux-gnu -o square_host.bc square.cpp
+/opt/rocm//bin/hipcc -I../../common -c -emit-llvm --cuda-device-only --offload-arch=gfx90a:xnack+ --offload-arch=gfx906 --offload-arch=gfx908 --offload-arch=gfx1010 --offload-arch=gfx1030 --offload-arch=gfx1100 --offload-arch=gfx1101 --offload-arch=gfx1102 --offload-arch=gfx1103 square.cpp
+/opt/rocm//llvm/bin/llvm-dis square_host.bc -o square_host.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.bc -o square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx906.bc -o square-hip-amdgcn-amd-amdhsa-gfx906.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx908.bc -o square-hip-amdgcn-amd-amdhsa-gfx908.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1010.bc -o square-hip-amdgcn-amd-amdhsa-gfx1010.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1030.bc -o square-hip-amdgcn-amd-amdhsa-gfx1030.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1100.bc -o square-hip-amdgcn-amd-amdhsa-gfx1100.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1101.bc -o square-hip-amdgcn-amd-amdhsa-gfx1101.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1102.bc -o square-hip-amdgcn-amd-amdhsa-gfx1102.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1103.bc -o square-hip-amdgcn-amd-amdhsa-gfx1103.ll
+/opt/rocm//llvm/bin/llvm-as square_host.ll -o square_host.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.ll -o square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx906.ll -o square-hip-amdgcn-amd-amdhsa-gfx906.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx908.ll -o square-hip-amdgcn-amd-amdhsa-gfx908.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1010.ll -o square-hip-amdgcn-amd-amdhsa-gfx1010.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1030.ll -o square-hip-amdgcn-amd-amdhsa-gfx1030.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1100.ll -o square-hip-amdgcn-amd-amdhsa-gfx1100.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1101.ll -o square-hip-amdgcn-amd-amdhsa-gfx1101.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1102.ll -o square-hip-amdgcn-amd-amdhsa-gfx1102.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1103.ll -o square-hip-amdgcn-amd-amdhsa-gfx1103.bc
+/opt/rocm//bin/hipcc -fsanitize=address -shared-libsan -c square_host.bc -o square_host.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx90a:xnack+ square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.bc -o square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx906 square-hip-amdgcn-amd-amdhsa-gfx906.bc -o square-hip-amdgcn-amd-amdhsa-gfx906.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx908 square-hip-amdgcn-amd-amdhsa-gfx908.bc -o square-hip-amdgcn-amd-amdhsa-gfx908.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1010 square-hip-amdgcn-amd-amdhsa-gfx1010.bc -o square-hip-amdgcn-amd-amdhsa-gfx1010.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1030 square-hip-amdgcn-amd-amdhsa-gfx1030.bc -o square-hip-amdgcn-amd-amdhsa-gfx1030.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1100 square-hip-amdgcn-amd-amdhsa-gfx1100.bc -o square-hip-amdgcn-amd-amdhsa-gfx1100.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1101 square-hip-amdgcn-amd-amdhsa-gfx1101.bc -o square-hip-amdgcn-amd-amdhsa-gfx1101.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1102 square-hip-amdgcn-amd-amdhsa-gfx1102.bc -o square-hip-amdgcn-amd-amdhsa-gfx1102.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1103 square-hip-amdgcn-amd-amdhsa-gfx1103.bc -o square-hip-amdgcn-amd-amdhsa-gfx1103.o
+/opt/rocm//llvm/bin/clang-offload-bundler -type=o -bundle-align=4096 -targets=host-x86_64-unknown-linux,hip-amdgcn-amd-amdhsa-gfx90a:xnack+,hip-amdgcn-amd-amdhsa-gfx906,hip-amdgcn-amd-amdhsa-gfx908,hip-amdgcn-amd-amdhsa-gfx1010,hip-amdgcn-amd-amdhsa-gfx1030,hip-amdgcn-amd-amdhsa-gfx1100,hip-amdgcn-amd-amdhsa-gfx1101,hip-amdgcn-amd-amdhsa-gfx1102,hip-amdgcn-amd-amdhsa-gfx1103 -inputs=/dev/null,square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.o,square-hip-amdgcn-amd-amdhsa-gfx906.o,square-hip-amdgcn-amd-amdhsa-gfx908.o,square-hip-amdgcn-amd-amdhsa-gfx1010.o,square-hip-amdgcn-amd-amdhsa-gfx1030.o,square-hip-amdgcn-amd-amdhsa-gfx1100.o,square-hip-amdgcn-amd-amdhsa-gfx1101.o,square-hip-amdgcn-amd-amdhsa-gfx1102.o,square-hip-amdgcn-amd-amdhsa-gfx1103.o -outputs=offload_bundle.hipfb
+/opt/rocm//llvm/bin/clang-offload-bundler: warning: -inputs is deprecated, use -input instead
+/opt/rocm//llvm/bin/clang-offload-bundler: warning: -outputs is deprecated, use -output instead
+/opt/rocm//llvm/bin/llvm-mc hip_obj_gen.mcin -o square_device.o --filetype=obj
+/opt/rocm//bin/hipcc -fsanitize=address -shared-libsan square_host.o square_device.o -o square_ir.out
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==64722==ERROR: AddressSanitizer: SEGV on unknown address 0x01ffeb64f000 (pc 0x000000217dee bp 0x7fffc9017010 sp 0x7fffc9016800 T0)
+==64722==The signal is caused by a READ memory access.
+    #0 0x217dee in main (/home/taccuser/asan/samples/2_Cookbook/17_llvm_ir_to_executable/square_ir.out+0x217dee)
+    #1 0x7fd6e6c3f082 in __libc_start_main /build/glibc-BHL3KM/glibc-2.31/csu/../csu/libc-start.c:308:16
+    #2 0x21673d in _start (/home/taccuser/asan/samples/2_Cookbook/17_llvm_ir_to_executable/square_ir.out+0x21673d)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/home/taccuser/asan/samples/2_Cookbook/17_llvm_ir_to_executable/square_ir.out+0x217dee) in main
+==64722==ABORTING
+	linux-vdso.so.1 (0x00007ffda41a5000)
+	libclang_rt.asan-x86_64.so => /opt/rocm/llvm/lib/clang/17.0.0/lib/linux/libclang_rt.asan-x86_64.so (0x00007f101ae52000)
+	libamdhip64.so.6 => /opt/rocm/lib/asan/libamdhip64.so.6 (0x00007f1018990000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f1018799000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f101864a000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f101862f000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f101843b000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f1018435000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f1018412000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f1018408000)
+	libamd_comgr.so.2 => /opt/rocm/lib/asan/libamd_comgr.so.2 (0x00007f100df48000)
+	libhsa-runtime64.so.1 => /opt/rocm/lib/asan/libhsa-runtime64.so.1 (0x00007f100d9ee000)
+	libnuma.so.1 => /lib/x86_64-linux-gnu/libnuma.so.1 (0x00007f100d9df000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f101b9c3000)
+	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f100d9c3000)
+	libtinfo.so.6 => /lib/x86_64-linux-gnu/libtinfo.so.6 (0x00007f100d993000)
+	libelf.so.1 => /lib/x86_64-linux-gnu/libelf.so.1 (0x00007f100d977000)
+	libdrm.so.2 => /opt/amdgpu/lib/x86_64-linux-gnu/libdrm.so.2 (0x00007f100d95e000)
+	libdrm_amdgpu.so.1 => /opt/amdgpu/lib/x86_64-linux-gnu/libdrm_amdgpu.so.1 (0x00007f100d950000)
+/opt/rocm//bin/hipcc -I../../common -fsanitize=address -shared-libsan -c -emit-llvm --cuda-host-only -target x86_64-linux-gnu -o square_host.bc square.cpp
+/opt/rocm//bin/hipcc -I../../common -c -emit-llvm --cuda-device-only --offload-arch=gfx90a:xnack+ --offload-arch=gfx906 --offload-arch=gfx908 --offload-arch=gfx1010 --offload-arch=gfx1030 --offload-arch=gfx1100 --offload-arch=gfx1101 --offload-arch=gfx1102 --offload-arch=gfx1103 square.cpp
+/opt/rocm//llvm/bin/llvm-dis square_host.bc -o square_host.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.bc -o square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx906.bc -o square-hip-amdgcn-amd-amdhsa-gfx906.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx908.bc -o square-hip-amdgcn-amd-amdhsa-gfx908.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1010.bc -o square-hip-amdgcn-amd-amdhsa-gfx1010.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1030.bc -o square-hip-amdgcn-amd-amdhsa-gfx1030.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1100.bc -o square-hip-amdgcn-amd-amdhsa-gfx1100.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1101.bc -o square-hip-amdgcn-amd-amdhsa-gfx1101.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1102.bc -o square-hip-amdgcn-amd-amdhsa-gfx1102.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1103.bc -o square-hip-amdgcn-amd-amdhsa-gfx1103.ll
+/opt/rocm//llvm/bin/llvm-as square_host.ll -o square_host.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.ll -o square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx906.ll -o square-hip-amdgcn-amd-amdhsa-gfx906.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx908.ll -o square-hip-amdgcn-amd-amdhsa-gfx908.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1010.ll -o square-hip-amdgcn-amd-amdhsa-gfx1010.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1030.ll -o square-hip-amdgcn-amd-amdhsa-gfx1030.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1100.ll -o square-hip-amdgcn-amd-amdhsa-gfx1100.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1101.ll -o square-hip-amdgcn-amd-amdhsa-gfx1101.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1102.ll -o square-hip-amdgcn-amd-amdhsa-gfx1102.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1103.ll -o square-hip-amdgcn-amd-amdhsa-gfx1103.bc
+/opt/rocm//bin/hipcc -fsanitize=address -shared-libsan -c square_host.bc -o square_host.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx90a:xnack+ square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.bc -o square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx906 square-hip-amdgcn-amd-amdhsa-gfx906.bc -o square-hip-amdgcn-amd-amdhsa-gfx906.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx908 square-hip-amdgcn-amd-amdhsa-gfx908.bc -o square-hip-amdgcn-amd-amdhsa-gfx908.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1010 square-hip-amdgcn-amd-amdhsa-gfx1010.bc -o square-hip-amdgcn-amd-amdhsa-gfx1010.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1030 square-hip-amdgcn-amd-amdhsa-gfx1030.bc -o square-hip-amdgcn-amd-amdhsa-gfx1030.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1100 square-hip-amdgcn-amd-amdhsa-gfx1100.bc -o square-hip-amdgcn-amd-amdhsa-gfx1100.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1101 square-hip-amdgcn-amd-amdhsa-gfx1101.bc -o square-hip-amdgcn-amd-amdhsa-gfx1101.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1102 square-hip-amdgcn-amd-amdhsa-gfx1102.bc -o square-hip-amdgcn-amd-amdhsa-gfx1102.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1103 square-hip-amdgcn-amd-amdhsa-gfx1103.bc -o square-hip-amdgcn-amd-amdhsa-gfx1103.o
+/opt/rocm//llvm/bin/clang-offload-bundler -type=o -bundle-align=4096 -targets=host-x86_64-unknown-linux,hip-amdgcn-amd-amdhsa-gfx90a:xnack+,hip-amdgcn-amd-amdhsa-gfx906,hip-amdgcn-amd-amdhsa-gfx908,hip-amdgcn-amd-amdhsa-gfx1010,hip-amdgcn-amd-amdhsa-gfx1030,hip-amdgcn-amd-amdhsa-gfx1100,hip-amdgcn-amd-amdhsa-gfx1101,hip-amdgcn-amd-amdhsa-gfx1102,hip-amdgcn-amd-amdhsa-gfx1103 -inputs=/dev/null,square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.o,square-hip-amdgcn-amd-amdhsa-gfx906.o,square-hip-amdgcn-amd-amdhsa-gfx908.o,square-hip-amdgcn-amd-amdhsa-gfx1010.o,square-hip-amdgcn-amd-amdhsa-gfx1030.o,square-hip-amdgcn-amd-amdhsa-gfx1100.o,square-hip-amdgcn-amd-amdhsa-gfx1101.o,square-hip-amdgcn-amd-amdhsa-gfx1102.o,square-hip-amdgcn-amd-amdhsa-gfx1103.o -outputs=offload_bundle.hipfb
+/opt/rocm//llvm/bin/clang-offload-bundler: warning: -inputs is deprecated, use -input instead
+/opt/rocm//llvm/bin/clang-offload-bundler: warning: -outputs is deprecated, use -output instead
+/opt/rocm//llvm/bin/llvm-mc hip_obj_gen.mcin -o square_device.o --filetype=obj
+/opt/rocm//bin/hipcc -fsanitize=address -shared-libsan square_host.o square_device.o -o square_ir.out
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==79883==ERROR: AddressSanitizer: SEGV on unknown address 0x01feaa9cf000 (pc 0x000000217dee bp 0x7fff4c8a8a60 sp 0x7fff4c8a8240 T0)
+==79883==The signal is caused by a READ memory access.
+    #0 0x217dee in main (/home/taccuser/asan/samples/2_Cookbook/17_llvm_ir_to_executable/square_ir.out+0x217dee)
+    #1 0x7f86b4c00082 in __libc_start_main /build/glibc-BHL3KM/glibc-2.31/csu/../csu/libc-start.c:308:16
+    #2 0x21673d in _start (/home/taccuser/asan/samples/2_Cookbook/17_llvm_ir_to_executable/square_ir.out+0x21673d)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/home/taccuser/asan/samples/2_Cookbook/17_llvm_ir_to_executable/square_ir.out+0x217dee) in main
+==79883==ABORTING
+	linux-vdso.so.1 (0x00007ffdb2963000)
+	libclang_rt.asan-x86_64.so => /opt/rocm/llvm/lib/clang/17.0.0/lib/linux/libclang_rt.asan-x86_64.so (0x00007fe92fe70000)
+	libamdhip64.so.6 => /opt/rocm/lib/asan/libamdhip64.so.6 (0x00007fe92d9ae000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fe92d7b7000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fe92d668000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fe92d64d000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fe92d459000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fe92d453000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fe92d430000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007fe92d426000)
+	libamd_comgr.so.2 => /opt/rocm/lib/asan/libamd_comgr.so.2 (0x00007fe922f66000)
+	libhsa-runtime64.so.1 => /opt/rocm/lib/asan/libhsa-runtime64.so.1 (0x00007fe922a0c000)
+	libnuma.so.1 => /lib/x86_64-linux-gnu/libnuma.so.1 (0x00007fe9229fd000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fe9309e1000)
+	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007fe9229e1000)
+	libtinfo.so.6 => /lib/x86_64-linux-gnu/libtinfo.so.6 (0x00007fe9229b1000)
+	libelf.so.1 => /lib/x86_64-linux-gnu/libelf.so.1 (0x00007fe922995000)
+	libdrm.so.2 => /opt/amdgpu/lib/x86_64-linux-gnu/libdrm.so.2 (0x00007fe92297c000)
+	libdrm_amdgpu.so.1 => /opt/amdgpu/lib/x86_64-linux-gnu/libdrm_amdgpu.so.1 (0x00007fe92296e000)
+/opt/rocm//bin/hipcc -I../../common -fsanitize=address -shared-libsan -c -emit-llvm --cuda-host-only -target x86_64-linux-gnu -o square_host.bc square.cpp
+/opt/rocm//bin/hipcc -I../../common -c -emit-llvm --cuda-device-only --offload-arch=gfx90a:xnack+ --offload-arch=gfx906 --offload-arch=gfx908 --offload-arch=gfx1010 --offload-arch=gfx1030 --offload-arch=gfx1100 --offload-arch=gfx1101 --offload-arch=gfx1102 --offload-arch=gfx1103 square.cpp
+/opt/rocm//llvm/bin/llvm-dis square_host.bc -o square_host.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.bc -o square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx906.bc -o square-hip-amdgcn-amd-amdhsa-gfx906.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx908.bc -o square-hip-amdgcn-amd-amdhsa-gfx908.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1010.bc -o square-hip-amdgcn-amd-amdhsa-gfx1010.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1030.bc -o square-hip-amdgcn-amd-amdhsa-gfx1030.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1100.bc -o square-hip-amdgcn-amd-amdhsa-gfx1100.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1101.bc -o square-hip-amdgcn-amd-amdhsa-gfx1101.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1102.bc -o square-hip-amdgcn-amd-amdhsa-gfx1102.ll
+/opt/rocm//llvm/bin/llvm-dis square-hip-amdgcn-amd-amdhsa-gfx1103.bc -o square-hip-amdgcn-amd-amdhsa-gfx1103.ll
+/opt/rocm//llvm/bin/llvm-as square_host.ll -o square_host.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.ll -o square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx906.ll -o square-hip-amdgcn-amd-amdhsa-gfx906.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx908.ll -o square-hip-amdgcn-amd-amdhsa-gfx908.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1010.ll -o square-hip-amdgcn-amd-amdhsa-gfx1010.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1030.ll -o square-hip-amdgcn-amd-amdhsa-gfx1030.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1100.ll -o square-hip-amdgcn-amd-amdhsa-gfx1100.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1101.ll -o square-hip-amdgcn-amd-amdhsa-gfx1101.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1102.ll -o square-hip-amdgcn-amd-amdhsa-gfx1102.bc
+/opt/rocm//llvm/bin/llvm-as square-hip-amdgcn-amd-amdhsa-gfx1103.ll -o square-hip-amdgcn-amd-amdhsa-gfx1103.bc
+/opt/rocm//bin/hipcc -fsanitize=address -shared-libsan -c square_host.bc -o square_host.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx90a:xnack+ square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.bc -o square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx906 square-hip-amdgcn-amd-amdhsa-gfx906.bc -o square-hip-amdgcn-amd-amdhsa-gfx906.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx908 square-hip-amdgcn-amd-amdhsa-gfx908.bc -o square-hip-amdgcn-amd-amdhsa-gfx908.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1010 square-hip-amdgcn-amd-amdhsa-gfx1010.bc -o square-hip-amdgcn-amd-amdhsa-gfx1010.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1030 square-hip-amdgcn-amd-amdhsa-gfx1030.bc -o square-hip-amdgcn-amd-amdhsa-gfx1030.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1100 square-hip-amdgcn-amd-amdhsa-gfx1100.bc -o square-hip-amdgcn-amd-amdhsa-gfx1100.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1101 square-hip-amdgcn-amd-amdhsa-gfx1101.bc -o square-hip-amdgcn-amd-amdhsa-gfx1101.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1102 square-hip-amdgcn-amd-amdhsa-gfx1102.bc -o square-hip-amdgcn-amd-amdhsa-gfx1102.o
+/opt/rocm//llvm/bin/clang -target amdgcn-amd-amdhsa -mcpu=gfx1103 square-hip-amdgcn-amd-amdhsa-gfx1103.bc -o square-hip-amdgcn-amd-amdhsa-gfx1103.o
+/opt/rocm//llvm/bin/clang-offload-bundler -type=o -bundle-align=4096 -targets=host-x86_64-unknown-linux,hip-amdgcn-amd-amdhsa-gfx90a:xnack+,hip-amdgcn-amd-amdhsa-gfx906,hip-amdgcn-amd-amdhsa-gfx908,hip-amdgcn-amd-amdhsa-gfx1010,hip-amdgcn-amd-amdhsa-gfx1030,hip-amdgcn-amd-amdhsa-gfx1100,hip-amdgcn-amd-amdhsa-gfx1101,hip-amdgcn-amd-amdhsa-gfx1102,hip-amdgcn-amd-amdhsa-gfx1103 -inputs=/dev/null,square-hip-amdgcn-amd-amdhsa-gfx90a:xnack+.o,square-hip-amdgcn-amd-amdhsa-gfx906.o,square-hip-amdgcn-amd-amdhsa-gfx908.o,square-hip-amdgcn-amd-amdhsa-gfx1010.o,square-hip-amdgcn-amd-amdhsa-gfx1030.o,square-hip-amdgcn-amd-amdhsa-gfx1100.o,square-hip-amdgcn-amd-amdhsa-gfx1101.o,square-hip-amdgcn-amd-amdhsa-gfx1102.o,square-hip-amdgcn-amd-amdhsa-gfx1103.o -outputs=offload_bundle.hipfb
+/opt/rocm//llvm/bin/clang-offload-bundler: warning: -inputs is deprecated, use -input instead
+/opt/rocm//llvm/bin/clang-offload-bundler: warning: -outputs is deprecated, use -output instead
+/opt/rocm//llvm/bin/llvm-mc hip_obj_gen.mcin -o square_device.o --filetype=obj
+/opt/rocm//bin/hipcc -fsanitize=address -shared-libsan square_host.o square_device.o -o square_ir.out
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==97133==ERROR: AddressSanitizer: SEGV on unknown address 0x0200772cb000 (pc 0x000000217dee bp 0x7fff87c59080 sp 0x7fff87c58860 T0)
+==97133==The signal is caused by a READ memory access.
+    #0 0x217dee in main (/home/taccuser/asan/samples/2_Cookbook/17_llvm_ir_to_executable/square_ir.out+0x217dee)
+    #1 0x7ff9d8b7b082 in __libc_start_main /build/glibc-BHL3KM/glibc-2.31/csu/../csu/libc-start.c:308:16
+    #2 0x21673d in _start (/home/taccuser/asan/samples/2_Cookbook/17_llvm_ir_to_executable/square_ir.out+0x21673d)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/home/taccuser/asan/samples/2_Cookbook/17_llvm_ir_to_executable/square_ir.out+0x217dee) in main
+==97133==ABORTING
+	linux-vdso.so.1 (0x00007ffcc1b53000)
+	libclang_rt.asan-x86_64.so => /opt/rocm/llvm/lib/clang/17.0.0/lib/linux/libclang_rt.asan-x86_64.so (0x00007f0788b16000)
+	libamdhip64.so.6 => /opt/rocm/lib/asan/libamdhip64.so.6 (0x00007f0786654000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f078645d000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f078630e000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f07862f3000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f07860ff000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f07860f9000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f07860d6000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f07860cc000)
+	libamd_comgr.so.2 => /opt/rocm/lib/asan/libamd_comgr.so.2 (0x00007f077bc0c000)
+	libhsa-runtime64.so.1 => /opt/rocm/lib/asan/libhsa-runtime64.so.1 (0x00007f077b6b2000)
+	libnuma.so.1 => /lib/x86_64-linux-gnu/libnuma.so.1 (0x00007f077b6a3000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f0789687000)
+	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f077b687000)
+	libtinfo.so.6 => /lib/x86_64-linux-gnu/libtinfo.so.6 (0x00007f077b657000)
+	libelf.so.1 => /lib/x86_64-linux-gnu/libelf.so.1 (0x00007f077b63b000)
+	libdrm.so.2 => /opt/amdgpu/lib/x86_64-linux-gnu/libdrm.so.2 (0x00007f077b622000)
+	libdrm_amdgpu.so.1 => /opt/amdgpu/lib/x86_64-linux-gnu/libdrm_amdgpu.so.1 (0x00007f077b614000)

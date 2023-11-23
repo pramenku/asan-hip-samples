@@ -1,0 +1,558 @@
+-- The C compiler identification is Clang 17.0.0
+-- The CXX compiler identification is Clang 17.0.0
+-- Check for working C compiler: /opt/rocm/llvm/bin/clang
+-- Check for working C compiler: /opt/rocm/llvm/bin/clang -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /opt/rocm/llvm/bin/clang
+-- Check for working CXX compiler: /opt/rocm/llvm/bin/clang -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - found
+-- Found Threads: TRUE  
+-- Performing Test HIP_CLANG_SUPPORTS_PARALLEL_JOBS
+-- Performing Test HIP_CLANG_SUPPORTS_PARALLEL_JOBS - Success
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/taccuser/asan/samples/2_Cookbook/11_texture_driver/build
+Scanning dependencies of target codeobj
+[ 33%] codeobj generated
+[ 33%] Built target codeobj
+Scanning dependencies of target texture2dDrv
+[ 66%] Building CXX object CMakeFiles/texture2dDrv.dir/texture2dDrv.cpp.o
+[100%] Linking CXX executable texture2dDrv
+[100%] Built target texture2dDrv
+tex2dKernelChar test  PASSED ...
+tex2dKernelShort test  PASSED ...
+tex2dKernelInt test  PASSED ...
+tex2dKernelFloat test  PASSED ...
+tex2dKernelChar4 test  PASSED ...
+tex2dKernelShort4 test  PASSED ...
+tex2dKernelInt4 test  PASSED ...
+tex2dKernelFloat4 test  PASSED ...
+texture2dDrv PASSED ...
+
+=================================================================
+==93796==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 2304 byte(s) in 32 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f978b2d147e  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x17c47e) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #2 0x7f9796dd1f26  (/opt/rocm/lib/asan/libamdhip64.so.6+0xcdaf26) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #3 0x7f9796ddc0a8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xce50a8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #4 0x7f9796d42da9  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc4bda9) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796c9e612  (/opt/rocm/lib/asan/libamdhip64.so.6+0xba7612) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796993096  (/opt/rocm/lib/asan/libamdhip64.so.6+0x89c096) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f97964b4c89  (/opt/rocm/lib/asan/libamdhip64.so.6+0x3bdc89) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9796743eab  (/opt/rocm/lib/asan/libamdhip64.so.6+0x64ceab) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #9 0x7f979674e4bb  (/opt/rocm/lib/asan/libamdhip64.so.6+0x6574bb) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #10 0x7f979675004d in hipMemcpy2DToArray (/opt/rocm/lib/asan/libamdhip64.so.6+0x65904d) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #11 0x205ef9 in bool runTest<char>(ihipModule_t*&, char const*, char const*) (/home/taccuser/asan/samples/2_Cookbook/11_texture_driver/build/texture2dDrv+0x205ef9)
+    #12 0x205841 in main (/home/taccuser/asan/samples/2_Cookbook/11_texture_driver/build/texture2dDrv+0x205841)
+    #13 0x7f9795bc6082 in __libc_start_main /build/glibc-BHL3KM/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 224 byte(s) in 4 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f978b2d0dfb  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x17bdfb) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #2 0x7f9796ddbe11  (/opt/rocm/lib/asan/libamdhip64.so.6+0xce4e11) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #3 0x7f9796d42da9  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc4bda9) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #4 0x7f9796c9e612  (/opt/rocm/lib/asan/libamdhip64.so.6+0xba7612) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796993096  (/opt/rocm/lib/asan/libamdhip64.so.6+0x89c096) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f97964b4c89  (/opt/rocm/lib/asan/libamdhip64.so.6+0x3bdc89) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796743eab  (/opt/rocm/lib/asan/libamdhip64.so.6+0x64ceab) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f979674e4bb  (/opt/rocm/lib/asan/libamdhip64.so.6+0x6574bb) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #9 0x7f979675004d in hipMemcpy2DToArray (/opt/rocm/lib/asan/libamdhip64.so.6+0x65904d) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #10 0x205ef9 in bool runTest<char>(ihipModule_t*&, char const*, char const*) (/home/taccuser/asan/samples/2_Cookbook/11_texture_driver/build/texture2dDrv+0x205ef9)
+    #11 0x205841 in main (/home/taccuser/asan/samples/2_Cookbook/11_texture_driver/build/texture2dDrv+0x205841)
+    #12 0x7f9795bc6082 in __libc_start_main /build/glibc-BHL3KM/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 216 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f978b2d147e  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x17c47e) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #2 0x7f9796d38cd5  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41cd5) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #3 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #4 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Direct leak of 120 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712eaf in operator new(unsigned long, std::nothrow_t const&) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:101:3
+    #1 0x7f978f6faa48 in amd_comgr_metadata_lookup (/opt/rocm/lib/asan/libamd_comgr.so.2+0x404ba48) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f9796d42968  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc4b968) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #3 0x7f9796d3e4df  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc474df) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #4 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Direct leak of 120 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712eaf in operator new(unsigned long, std::nothrow_t const&) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:101:3
+    #1 0x7f978f6faa48 in amd_comgr_metadata_lookup (/opt/rocm/lib/asan/libamd_comgr.so.2+0x404ba48) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f9796d42968  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc4b968) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #3 0x7f9796d3e602  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc47602) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #4 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Direct leak of 120 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712eaf in operator new(unsigned long, std::nothrow_t const&) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:101:3
+    #1 0x7f978f6f11f6 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40421f6) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #3 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #4 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Direct leak of 72 byte(s) in 1 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f978b296355  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x141355) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #2 0x7f978b285166  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x130166) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #3 0x7f978b2bcab9  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x167ab9) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #4 0x7f9796d4c111  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc55111) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796ddbba1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xce4ba1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d42da9  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc4bda9) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796c9e612  (/opt/rocm/lib/asan/libamdhip64.so.6+0xba7612) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9796993096  (/opt/rocm/lib/asan/libamdhip64.so.6+0x89c096) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #9 0x7f97964b4c89  (/opt/rocm/lib/asan/libamdhip64.so.6+0x3bdc89) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #10 0x7f9796743eab  (/opt/rocm/lib/asan/libamdhip64.so.6+0x64ceab) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #11 0x7f979674e4bb  (/opt/rocm/lib/asan/libamdhip64.so.6+0x6574bb) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #12 0x7f979675004d in hipMemcpy2DToArray (/opt/rocm/lib/asan/libamdhip64.so.6+0x65904d) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #13 0x205ef9 in bool runTest<char>(ihipModule_t*&, char const*, char const*) (/home/taccuser/asan/samples/2_Cookbook/11_texture_driver/build/texture2dDrv+0x205ef9)
+    #14 0x205841 in main (/home/taccuser/asan/samples/2_Cookbook/11_texture_driver/build/texture2dDrv+0x205841)
+    #15 0x7f9795bc6082 in __libc_start_main /build/glibc-BHL3KM/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Direct leak of 72 byte(s) in 1 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f978b2d147e  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x17c47e) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #2 0x7f978b314f73  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x1bff73) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #3 0x7f978b30bc9b  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x1b6c9b) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #4 0x7f978b30b8c5  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x1b68c5) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #5 0x7f978b2b91c5  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x1641c5) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #6 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Direct leak of 72 byte(s) in 1 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f978b296355  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x141355) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #2 0x7f978b285166  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x130166) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #3 0x7f978b289529  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x134529) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #4 0x7f978b28e0f5  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x1390f5) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+
+Direct leak of 72 byte(s) in 1 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f978b2d147e  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x17c47e) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #2 0x7f978b24d754  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0xf8754) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #3 0x7f978b2897ea  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x1347ea) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+
+Indirect leak of 5280 byte(s) in 66 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f979529f896  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x9bf0896) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+
+Indirect leak of 1488 byte(s) in 31 object(s) allocated from:
+    #0 0x7f979870249f in malloc /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x7f978b4a4b78  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x34fb78) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #2 0x7f978b2d9ddc  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x184ddc) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #3 0x7f978b2da929  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x185929) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #4 0x7f9796dd1f26  (/opt/rocm/lib/asan/libamdhip64.so.6+0xcdaf26) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796ddc0a8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xce50a8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d42da9  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc4bda9) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796c9e612  (/opt/rocm/lib/asan/libamdhip64.so.6+0xba7612) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9796993096  (/opt/rocm/lib/asan/libamdhip64.so.6+0x89c096) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #9 0x7f97964b4c89  (/opt/rocm/lib/asan/libamdhip64.so.6+0x3bdc89) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #10 0x7f9796743eab  (/opt/rocm/lib/asan/libamdhip64.so.6+0x64ceab) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #11 0x7f979674e4bb  (/opt/rocm/lib/asan/libamdhip64.so.6+0x6574bb) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #12 0x7f979675004d in hipMemcpy2DToArray (/opt/rocm/lib/asan/libamdhip64.so.6+0x65904d) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #13 0x205ef9 in bool runTest<char>(ihipModule_t*&, char const*, char const*) (/home/taccuser/asan/samples/2_Cookbook/11_texture_driver/build/texture2dDrv+0x205ef9)
+    #14 0x205841 in main (/home/taccuser/asan/samples/2_Cookbook/11_texture_driver/build/texture2dDrv+0x205841)
+    #15 0x7f9795bc6082 in __libc_start_main /build/glibc-BHL3KM/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+Indirect leak of 1032 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712eaf in operator new(unsigned long, std::nothrow_t const&) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:101:3
+    #1 0x7f978f6f125f in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x404225f) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #3 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #4 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 768 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f978f76db92  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40beb92) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+
+Indirect leak of 736 byte(s) in 2 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f97964b4e94  (/opt/rocm/lib/asan/libamdhip64.so.6+0x3bde94) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #2 0x7f979644161a  (/opt/rocm/lib/asan/libamdhip64.so.6+0x34a61a) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #3 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 736 byte(s) in 2 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f97964b4ed2  (/opt/rocm/lib/asan/libamdhip64.so.6+0x3bded2) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #2 0x7f979644161a  (/opt/rocm/lib/asan/libamdhip64.so.6+0x34a61a) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #3 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 504 byte(s) in 1 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f9796d473ca  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc503ca) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #2 0x7f9796cdee47  (/opt/rocm/lib/asan/libamdhip64.so.6+0xbe7e47) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #3 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #4 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 480 byte(s) in 2 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f97964413eb  (/opt/rocm/lib/asan/libamdhip64.so.6+0x34a3eb) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #2 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 176 byte(s) in 1 object(s) allocated from:
+    #0 0x7f979870249f in malloc /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x7f9796d4435f  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc4d35f) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #2 0x7f9796cd66aa  (/opt/rocm/lib/asan/libamdhip64.so.6+0xbdf6aa) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #3 0x7f9796cd6133  (/opt/rocm/lib/asan/libamdhip64.so.6+0xbdf133) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #4 0x7f9796cdee47  (/opt/rocm/lib/asan/libamdhip64.so.6+0xbe7e47) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 160 byte(s) in 4 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f97964b538a  (/opt/rocm/lib/asan/libamdhip64.so.6+0x3be38a) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #2 0x7f97964c41a3  (/opt/rocm/lib/asan/libamdhip64.so.6+0x3cd1a3) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+
+Indirect leak of 144 byte(s) in 3 object(s) allocated from:
+    #0 0x7f979870249f in malloc /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x7f978b4a4b78  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x34fb78) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #2 0x7f978b2d9ddc  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x184ddc) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #3 0x7f978b2da929  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x185929) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #4 0x7f9796d38cd5  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41cd5) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 144 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f978f76ccfd  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40bdcfd) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f76044f  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b144f) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 144 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f979529bc70  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x9becc70) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+
+Indirect leak of 123 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f75ffc8  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b0fc8) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 104 byte(s) in 1 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f9796cdfe94  (/opt/rocm/lib/asan/libamdhip64.so.6+0xbe8e94) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+
+Indirect leak of 72 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f9796cd59f9  (/opt/rocm/lib/asan/libamdhip64.so.6+0xbde9f9) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+
+Indirect leak of 72 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f978f7105f0  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40615f0) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f6f1659 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042659) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #4 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 48 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712bf7 in operator new(unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:95:3
+    #1 0x7f978f76e01f  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40bf01f) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+
+Indirect leak of 48 byte(s) in 1 object(s) allocated from:
+    #0 0x7f979870249f in malloc /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x7f978b4a4b78  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x34fb78) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #2 0x7f978b2d9ddc  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x184ddc) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #3 0x7f978b2da929  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x185929) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #4 0x7f978b29cfb3  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x147fb3) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #5 0x7f978b288627  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x133627) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #6 0x7f978b2a2b0b  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x14db0b) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+
+Indirect leak of 48 byte(s) in 1 object(s) allocated from:
+    #0 0x7f979870249f in malloc /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_malloc_linux.cpp:69:3
+    #1 0x7f978b4a4b78  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x34fb78) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #2 0x7f978b2d9ddc  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x184ddc) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #3 0x7f978b2da929  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x185929) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #4 0x7f978b24d754  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0xf8754) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+    #5 0x7f978b2897ea  (/opt/rocm/lib/asan/libhsa-runtime64.so.1+0x1347ea) (BuildId: 43667e531140fcd7a8f8e300f20ebfe335d9271f)
+
+Indirect leak of 18 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f7601dc  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b11dc) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 18 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f76033a  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b133a) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 18 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f76007e  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b107e) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 15 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f760c77  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b1c77) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 15 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f7603be  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b13be) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 12 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f760f91  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b1f91) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 12 byte(s) in 6 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f760768  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b1768) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 9 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f76012d  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b112d) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 9 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f7615ca  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b25ca) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 9 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f7614c1  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b24c1) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 9 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f76055f  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b155f) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 9 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f7612ad  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b22ad) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 9 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f7611a2  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b21a2) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 9 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f7604b0  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b14b0) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 6 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f760e88  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b1e88) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 6 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f7616d5  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b26d5) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 6 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f761099  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b2099) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 3 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f760d81  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b1d81) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 3 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f7613b9  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b23b9) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 3 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f760b6e  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b1b6e) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+Indirect leak of 3 byte(s) in 3 object(s) allocated from:
+    #0 0x7f9798712d57 in operator new[](unsigned long) /long_pathname_so_that_rpms_can_package_the_debug_info/src/external/llvm-project/compiler-rt/lib/asan/asan_new_delete.cpp:98:3
+    #1 0x7f978f76d789  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40be789) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #2 0x7f978f76028b  (/opt/rocm/lib/asan/libamd_comgr.so.2+0x40b128b) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #3 0x7f978f6f1602 in amd_comgr_get_isa_metadata (/opt/rocm/lib/asan/libamd_comgr.so.2+0x4042602) (BuildId: 8b5fd780bc803bcb3cfa6978d03b2c4e81704d73)
+    #4 0x7f9796d3e3f1  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc473f1) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #5 0x7f9796d38953  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc41953) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #6 0x7f9796d3640b  (/opt/rocm/lib/asan/libamdhip64.so.6+0xc3f40b) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #7 0x7f9796b5ffe8  (/opt/rocm/lib/asan/libamdhip64.so.6+0xa68fe8) (BuildId: 28bb193e97f94af7bf5f4ef84d3f5f691ccd0b57)
+    #8 0x7f9795b8a4de in __pthread_once_slow /build/glibc-BHL3KM/glibc-2.31/nptl/pthread_once.c:116:7
+
+SUMMARY: AddressSanitizer: 15900 byte(s) leaked in 257 allocation(s).
+	linux-vdso.so.1 (0x00007ffe49581000)
+	libclang_rt.asan-x86_64.so => /opt/rocm/llvm/lib/clang/17.0.0/lib/linux/libclang_rt.asan-x86_64.so (0x00007fd80e69c000)
+	libamdhip64.so.6 => /opt/rocm/lib/asan/libamdhip64.so.6 (0x00007fd80c1da000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fd80bfe3000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fd80be94000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fd80be79000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd80bc85000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fd80bc7f000)
+	libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fd80bc5c000)
+	librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007fd80bc52000)
+	libamd_comgr.so.2 => /opt/rocm/lib/asan/libamd_comgr.so.2 (0x00007fd801792000)
+	libhsa-runtime64.so.1 => /opt/rocm/lib/asan/libhsa-runtime64.so.1 (0x00007fd801238000)
+	libnuma.so.1 => /lib/x86_64-linux-gnu/libnuma.so.1 (0x00007fd801229000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fd80f20d000)
+	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007fd80120d000)
+	libtinfo.so.6 => /lib/x86_64-linux-gnu/libtinfo.so.6 (0x00007fd8011dd000)
+	libelf.so.1 => /lib/x86_64-linux-gnu/libelf.so.1 (0x00007fd8011c1000)
+	libdrm.so.2 => /opt/amdgpu/lib/x86_64-linux-gnu/libdrm.so.2 (0x00007fd8011a8000)
+	libdrm_amdgpu.so.1 => /opt/amdgpu/lib/x86_64-linux-gnu/libdrm_amdgpu.so.1 (0x00007fd801198000)

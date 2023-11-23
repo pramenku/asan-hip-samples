@@ -1,0 +1,4 @@
+/home/taccuser/asan/samples/0_Intro/module_api_global/build/CMakeFiles/rebuild_cache.dir
+/home/taccuser/asan/samples/0_Intro/module_api_global/build/CMakeFiles/edit_cache.dir
+/home/taccuser/asan/samples/0_Intro/module_api_global/build/CMakeFiles/codeobj.dir
+/home/taccuser/asan/samples/0_Intro/module_api_global/build/CMakeFiles/runKernel.hip.out.dir

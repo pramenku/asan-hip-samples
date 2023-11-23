@@ -1,0 +1,65 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/taccuser/asan/samples/2_Cookbook/5_2dshfl/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_53006/fast && /usr/bin/make -f CMakeFiles/cmTC_53006.dir/build.make CMakeFiles/cmTC_53006.dir/build
+make[1]: Entering directory '/home/taccuser/asan/samples/2_Cookbook/5_2dshfl/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_53006.dir/src.c.o
+/opt/rocm/llvm/bin/clang   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_53006.dir/src.c.o   -c /home/taccuser/asan/samples/2_Cookbook/5_2dshfl/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_53006
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_53006.dir/link.txt --verbose=1
+/opt/rocm/llvm/bin/clang  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_53006.dir/src.c.o  -o cmTC_53006 
+ld.lld: error: undefined symbol: pthread_create
+>>> referenced by src.c
+>>>               CMakeFiles/cmTC_53006.dir/src.c.o:(main)
+
+ld.lld: error: undefined symbol: pthread_detach
+>>> referenced by src.c
+>>>               CMakeFiles/cmTC_53006.dir/src.c.o:(main)
+
+ld.lld: error: undefined symbol: pthread_join
+>>> referenced by src.c
+>>>               CMakeFiles/cmTC_53006.dir/src.c.o:(main)
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[1]: *** [CMakeFiles/cmTC_53006.dir/build.make:87: cmTC_53006] Error 1
+make[1]: Leaving directory '/home/taccuser/asan/samples/2_Cookbook/5_2dshfl/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_53006/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/taccuser/asan/samples/2_Cookbook/5_2dshfl/build/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_8ef1d/fast && /usr/bin/make -f CMakeFiles/cmTC_8ef1d.dir/build.make CMakeFiles/cmTC_8ef1d.dir/build
+make[1]: Entering directory '/home/taccuser/asan/samples/2_Cookbook/5_2dshfl/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_8ef1d.dir/CheckFunctionExists.c.o
+/opt/rocm/llvm/bin/clang   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_8ef1d.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_8ef1d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8ef1d.dir/link.txt --verbose=1
+/opt/rocm/llvm/bin/clang  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_8ef1d.dir/CheckFunctionExists.c.o  -o cmTC_8ef1d  -lpthreads 
+ld.lld: error: unable to find library -lpthreads
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[1]: *** [CMakeFiles/cmTC_8ef1d.dir/build.make:87: cmTC_8ef1d] Error 1
+make[1]: Leaving directory '/home/taccuser/asan/samples/2_Cookbook/5_2dshfl/build/CMakeFiles/CMakeTmp'
+make: *** [Makefile:121: cmTC_8ef1d/fast] Error 2
+
+
+
