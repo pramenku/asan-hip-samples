@@ -1,0 +1,3 @@
+*.o
+
+vectorAdd/vectoradd_hip.exe

@@ -1,0 +1,1 @@
+/opt/rocm/bin/hipcc  -fsanitize=address --offload-arch=gfx90a:xnack+ -shared-libsan -O3 -DNDEBUG   CMakeFiles/test_openmp_helloworld.dir/openmp_helloworld.cpp.o  -o test_openmp_helloworld  -Wl,-rpath,/opt/rocm/lib -fopenmp /opt/rocm/lib/libamdhip64.so.6.0.60100 --hip-link 
