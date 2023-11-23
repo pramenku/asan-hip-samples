@@ -1,5 +1,0 @@
-/home/taccuser/asan/samples/1_Utils/hipDispatchLatency/build/CMakeFiles/rebuild_cache.dir
-/home/taccuser/asan/samples/1_Utils/hipDispatchLatency/build/CMakeFiles/edit_cache.dir
-/home/taccuser/asan/samples/1_Utils/hipDispatchLatency/build/CMakeFiles/codeobj.dir
-/home/taccuser/asan/samples/1_Utils/hipDispatchLatency/build/CMakeFiles/hipDispatchEnqueueRateMT.dir
-/home/taccuser/asan/samples/1_Utils/hipDispatchLatency/build/CMakeFiles/hipDispatchLatency.dir

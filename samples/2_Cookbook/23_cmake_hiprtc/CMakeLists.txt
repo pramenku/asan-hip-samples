@@ -22,10 +22,17 @@ project(cmake_hiprtc_test)
 
 cmake_minimum_required(VERSION 3.10.2)
 
-set(CMAKE_CXX_COMPILER ${HIP_HIPCC_EXECUTABLE})
-set(CMAKE_CXX_LINKER   ${HIP_HIPCC_EXECUTABLE})
-set(CMAKE_CXX_FLAGS "-fsanitize=address --offload-arch=gfx90a:xnack+ -shared-libsan")
+if(UNIX)
+  if(NOT DEFINED ROCM_PATH)
+    set(ROCM_PATH "/opt/rocm" CACHE STRING "Default ROCM installation directory.")
+  endif()
+  # Search for rocm in common locations
+  list(APPEND CMAKE_PREFIX_PATH ${ROCM_PATH})
+endif()
 
+set(CMAKE_CXX_COMPILER "${ROCM_PATH}/llvm/bin/clang++")
+
+set(CMAKE_CXX_FLAGS "-fsanitize=address --offload-arch=gfx90a:xnack+ -shared-libsan")
 
 # Find hiprtc
 find_package(hiprtc REQUIRED)
@@ -33,7 +40,12 @@ find_package(hiprtc REQUIRED)
 find_package(hip REQUIRED)
 
 # Create the excutable
-add_executable(test saxpy.cpp)
+if(TARGET build_cookbook)
+set(EXCLUDE_OPTION EXCLUDE_FROM_ALL)
+else()
+set(EXCLUDE_OPTION )
+endif()
+add_executable(test ${EXCLUDE_OPTION} saxpy.cpp)
 
 # Link with HIPRTC
 target_link_libraries(test hiprtc::hiprtc)
@@ -41,3 +53,7 @@ target_link_libraries(test hiprtc::hiprtc)
 target_link_libraries(test hip::device)
 
 target_include_directories(test PRIVATE ../../common)
+
+if(TARGET build_cookbook)
+add_dependencies(build_cookbook test)
+endif()

@@ -1,1 +1,0 @@
-/opt/rocm/bin/hipcc  -fsanitize=address --offload-arch=gfx90a:xnack+ -shared-libsan -O3 -DNDEBUG  -pthread CMakeFiles/test_device_static.dir/hipMain2.cpp.o  -o test_device_static  -Wl,-rpath,/opt/rocm/lib libHipDevice.a -fgpu-rdc -lamdhip64 /opt/rocm/lib/libamd_comgr.so.2.6.60100 

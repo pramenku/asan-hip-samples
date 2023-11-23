@@ -1,8 +1,0 @@
-CMake Error at CMakeLists.txt:21 (cmake_minimum_required):
-  CMake 3.21.3 or higher is required.  You are running version 3.16.3
-
-
--- Configuring incomplete, errors occurred!
-make: *** No targets specified and no makefile found.  Stop.
-./run_samples.sh: line 320: ./cmake_hip_cxx_clang: No such file or directory
-ldd: ./cmake_hip_cxx_clang: No such file or directory

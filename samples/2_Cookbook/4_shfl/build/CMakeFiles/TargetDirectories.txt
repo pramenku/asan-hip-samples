@@ -1,3 +1,0 @@
-/home/taccuser/asan/samples/2_Cookbook/4_shfl/build/CMakeFiles/rebuild_cache.dir
-/home/taccuser/asan/samples/2_Cookbook/4_shfl/build/CMakeFiles/edit_cache.dir
-/home/taccuser/asan/samples/2_Cookbook/4_shfl/build/CMakeFiles/shfl.dir

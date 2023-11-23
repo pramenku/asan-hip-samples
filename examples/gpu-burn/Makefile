@@ -7,8 +7,8 @@ HIP_INCLUDE = -I${HIP_PATH}/../include
 BUILD_DIR ?= build
 
 HIPCC = $(HIP_PATH)/bin/hipcc
-CPPFLAGS = -O3 -fsanitize=address -shared-libasan 
-LDFLAGS = -lm -lpthread
+CPPFLAGS = -O3 -g -fsanitize=address -shared-libasan 
+LDFLAGS = -lm -lpthread -fsanitize=address
 
 ifeq (${HIP_PLATFORM}, nvcc)
     CPPFLAGS += -arch=compute_20

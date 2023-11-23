@@ -97,7 +97,7 @@ ll_to_bc:
 	$(LLVM_AS) square-hip-amdgcn-amd-amdhsa-$(GPU_ARCH9).ll -o square-hip-amdgcn-amd-amdhsa-$(GPU_ARCH9).bc
 
 ir_to_exec:
-	$(HIPCC) -fsanitize=address -shared-libsan -c $(SQ_HOST_BC) -o $(SQ_HOST_OBJ)
+	$(HIPCC) -c $(SQ_HOST_BC) -o $(SQ_HOST_OBJ)
 	$(CLANG) -target amdgcn-amd-amdhsa -mcpu=$(GPU_ARCH1) square-hip-amdgcn-amd-amdhsa-$(GPU_ARCH1).bc -o square-hip-amdgcn-amd-amdhsa-$(GPU_ARCH1).o
 	$(CLANG) -target amdgcn-amd-amdhsa -mcpu=$(GPU_ARCH2) square-hip-amdgcn-amd-amdhsa-$(GPU_ARCH2).bc -o square-hip-amdgcn-amd-amdhsa-$(GPU_ARCH2).o
 	$(CLANG) -target amdgcn-amd-amdhsa -mcpu=$(GPU_ARCH3) square-hip-amdgcn-amd-amdhsa-$(GPU_ARCH3).bc -o square-hip-amdgcn-amd-amdhsa-$(GPU_ARCH3).o

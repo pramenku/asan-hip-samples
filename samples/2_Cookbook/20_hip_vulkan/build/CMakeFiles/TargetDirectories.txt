@@ -1,2 +1,0 @@
-/home/taccuser/asan/samples/2_Cookbook/20_hip_vulkan/build/CMakeFiles/rebuild_cache.dir
-/home/taccuser/asan/samples/2_Cookbook/20_hip_vulkan/build/CMakeFiles/edit_cache.dir

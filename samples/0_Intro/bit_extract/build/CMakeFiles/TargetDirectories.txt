@@ -1,3 +1,0 @@
-/home/taccuser/asan/samples/0_Intro/bit_extract/build/CMakeFiles/rebuild_cache.dir
-/home/taccuser/asan/samples/0_Intro/bit_extract/build/CMakeFiles/edit_cache.dir
-/home/taccuser/asan/samples/0_Intro/bit_extract/build/CMakeFiles/bit_extract.dir
