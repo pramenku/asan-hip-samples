@@ -2,7 +2,7 @@
 
 
 export HSA_XNACK=1
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rocm/llvm/lib/clang/17.0.0/lib/linux
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rocm/lib/llvm/lib/clang/17/lib/linux
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/rocm/lib/asan
 export ASAN_SYMBOLIZER_PATH=/opt/rocm/llvm/bin/llvm-symbolizer
 export PATH=/opt/rocm/llvm/bin:$PATH
