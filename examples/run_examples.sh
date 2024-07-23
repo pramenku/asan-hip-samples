@@ -61,13 +61,13 @@ make
 cd ..
 
 # mini-nbody
-echo
-echo "==== mini-nbody ===="
-cd mini-nbody/hip
-./HIP-nbody-orig.sh
-./HIP-nbody-soa.sh
-./HIP-nbody-block.sh
-cd ../..
+# echo
+# echo "==== mini-nbody ===="
+# cd mini-nbody/hip
+# ./HIP-nbody-orig.sh
+# ./HIP-nbody-soa.sh
+# ./HIP-nbody-block.sh
+# cd ../..
 
 # add4
 echo
