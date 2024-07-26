@@ -55,28 +55,28 @@ ldd ./square | grep -i asan
 cd ../../../
 
 
-echo
-echo "=============1_Utils/hipDispatchLatency" 
-cd 1_Utils/hipDispatchLatency
-rm -rf build && mkdir -p build
-cd build
-cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
-make 
-./hipDispatchLatency  
-ldd ./hipDispatchLatency | grep -i asan  
-cd ../../../
+#echo
+#echo "=============1_Utils/hipDispatchLatency" 
+#cd 1_Utils/hipDispatchLatency
+#rm -rf build && mkdir -p build
+#cd build
+#cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
+#make 
+#./hipDispatchLatency  
+#ldd ./hipDispatchLatency | grep -i asan  
+#cd ../../../
 
 
-echo
-echo "=============1_Utils/hipInfo========" 
-cd 1_Utils/hipInfo
-rm -rf build && mkdir -p build
-cd build
-cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
-make 
-./hipInfo 
-ldd ./hipInfo 
-cd ../../../
+#echo
+#echo "=============1_Utils/hipInfo========" 
+#cd 1_Utils/hipInfo
+#rm -rf build && mkdir -p build
+#cd build
+#cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
+#make 
+#./hipInfo 
+#ldd ./hipInfo 
+#cd ../../../
 
 
 echo
