@@ -3,7 +3,7 @@ ROCM_PATH is the path where ROCM is installed. default path is /opt/rocm.
 
 This sample shows how to generate the assembly code for a simple HIP source application, then re-compiling it and generating a valid HIP executable.
 
-This sample uses a previous HIP application sample, please see [0_Intro/square](https://github.com/ROCm-Developer-Tools/HIP/blob/master/samples/0_Intro/square).
+This sample uses a previous HIP application sample, please see [0_Intro/square](https://github.com/ROCm/hip-tests/tree/develop/samples/0_Intro/square).
 
 ## Compiling the HIP source into assembly
 Using HIP flags `-c -S` will help generate the host x86_64 and the device AMDGCN assembly code when paired with `--cuda-host-only` and `--cuda-device-only` respectively. In this sample we use these commands:
@@ -56,12 +56,16 @@ Finally, using the system linker, hipcc, or clang, link the host and device obje
 ```
 
 ## How to build and run this sample:
-Use these make commands to compile into assembly, compile assembly into executable, and execute it.
-- To compile the HIP application into host and device assembly: `make src_to_asm`.
-- To compile the assembly files into an executable: `make asm_to_exec`.
-- To execute, run
+- Build the sample using cmake
 ```
-./square_asm.out
+$ mkdir build; cd build
+$ cmake .. -DCMAKE_PREFIX_PATH=/opt/rocm
+$ make
+```
+
+- Execute sample
+```
+$ ./square_asm.out
 info: running on device AMD Radeon Graphics
 info: allocate host mem (  7.63 MB)
 info: allocate device mem (  7.63 MB)
@@ -74,4 +78,4 @@ PASSED!
 
 **Note:** Currently, defined arch is `gfx900`, `gfx906`, `gfx908`, `gfx1010`,`gfx1030`,`gfx1100`,`gfx1101`,`gfx1102` and `gfx1103`. Any undefined arch can be modified with make argument `GPU_ARCHxx`.
 
-## For More Information, please refer to the HIP FAQ.
+## For More Information, please refer to [HIP FAQ](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/faq.html).

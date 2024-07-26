@@ -262,20 +262,24 @@ cd ../../../../
 echo
 echo "===================2_Cookbook/16_assembly_to_executable====================" 
 cd 2_Cookbook/16_assembly_to_executable
-make clean
-make 
+rm -rf build && mkdir -p build
+cd build
+cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm ..
+make
 ./square_asm.out 
 ldd ./square_asm.out 
-cd ../../
+cd ../../../../
 
 echo
 echo "==============================2_Cookbook/17_llvm_ir_to_executable=============" 
 cd 2_Cookbook/17_llvm_ir_to_executable
-make clean
-make  
+rm -rf build && mkdir -p build
+cd build
+cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm ..
+make 
 ./square_ir.out 
 ldd ./square_ir.out 
-cd ../../
+cd ../../../../
 
 echo
 echo "=======================2_Cookbook/18_cmake_hip_device================" 

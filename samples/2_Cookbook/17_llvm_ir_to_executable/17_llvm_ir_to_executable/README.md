@@ -3,7 +3,7 @@ ROCM_PATH is the path where ROCM is installed. default path is /opt/rocm.
 
 This sample shows how to generate the LLVM IR for a simple HIP source application, then re-compiling it and generating a valid HIP executable.
 
-This sample uses a previous HIP application sample, please see [0_Intro/square](https://github.com/ROCm-Developer-Tools/HIP/blob/master/samples/0_Intro/square).
+This sample uses a previous HIP application sample, please see [0_Intro/square](https://github.com/ROCm/hip-tests/tree/develop/samples/0_Intro/square).
 
 ## Compiling the HIP source into LLVM IR
 Using HIP flags `-c -emit-llvm` will help generate the host x86_64 and the device LLVM bitcode when paired with `--cuda-host-only` and `--cuda-device-only` respectively. In this sample we use these commands:
@@ -84,14 +84,16 @@ Finally, using the system linker, hipcc, or clang, link the host and device obje
 If you haven't modified the GPU archs, this executable should run on the defined `gfx900`, `gfx906`, `gfx908`, `gfx1010`, `gfx1030`, `gfx1100`, `gfx1101`, `gfx1102` and `gfx1103`.
 
 ## How to build and run this sample:
-Use these make commands to compile into LLVM IR, compile IR into executable, and execute it.
-- To compile the HIP application into host and device LLVM IR: `make src_to_ir`.
-- To disassembly the LLVM IR bitcode into human readable LLVM IR: `make bc_to_ll`.
-- To assembly the human readable LLVM IR bitcode back into LLVM IR bitcode: `make ll_to_bc`.
-- To compile the LLVM IR files into an executable: `make ir_to_exec`.
-- To execute, run
+- Build the sample using cmake
 ```
-./square_ir.out
+$ mkdir build; cd build
+$ cmake .. -DCMAKE_PREFIX_PATH=/opt/rocm
+$ make
+```
+
+- Execute sample
+```
+$ ./square_ir.out
 info: running on device AMD Radeon Graphics
 info: allocate host mem (  7.63 MB)
 info: allocate device mem (  7.63 MB)
@@ -104,4 +106,4 @@ PASSED!
 
 **Note:** Any undefined arch can be modified with make argument `GPU_ARCHxx`.
 
-## For More Information, please refer to the HIP FAQ.
+## For More Information, please refer to [HIP FAQ](https://rocm.docs.amd.com/projects/HIP/en/latest/how-to/faq.html).
