@@ -22,14 +22,14 @@ ldd ./vectoradd_hip.exe | grep -i asan
 cd ..
 
 # gpu-burn
-echo
-echo "==== gpu-burn ===="
-cd gpu-burn
-make clean
-make
-./build/gpuburn-hip -t 5
-ldd ./build/gpuburn-hip | grep -i asan
-cd ..
+#echo
+#echo "==== gpu-burn ===="
+#cd gpu-burn
+#make clean
+#make
+#./build/gpuburn-hip -t 5
+#ldd ./build/gpuburn-hip | grep -i asan
+#cd ..
 
 # strided-access
 echo
