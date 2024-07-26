@@ -47,6 +47,8 @@ else()
     message(FATAL_ERROR "Could not find HIP. Ensure that HIP is either installed in ${ROCM_PATH}/hip or the variable HIP_PATH is set to point to the right location.")
 endif()
 
+set(CMAKE_CXX_FLAGS "-fsanitize=address --offload-arch=gfx90a:xnack+ -shared-libsan")
+
 set(MY_SOURCE_FILES MatrixTranspose.cpp)
 set(MY_TARGET_NAME MatrixTranspose1)
 set(MY_HIPCC_OPTIONS)
