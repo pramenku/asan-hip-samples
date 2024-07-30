@@ -211,8 +211,8 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-./cmake_hip_add_executable 
-ldd ./cmake_hip_add_executable 
+./MatrixTranspose1 
+ldd ./MatrixTranspose1
 cd ../../../
 
 echo
@@ -299,8 +299,8 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-./cmake_lang 
-ldd ./cmake_lang 
+./test_fortran
+ldd ./test_fortran
 cd ../../../ 
 
 echo
@@ -321,8 +321,8 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-./cmake_hip_cxx_clang 
-ldd ./cmake_hip_cxx_clang 
+./square
+ldd ./square
 cd ../../../
 
 echo
@@ -332,8 +332,8 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-./cmake_hip_lang 
-ldd ./cmake_hip_lang 
+./square
+ldd ./square
 cd ../../../
 
 
@@ -344,8 +344,8 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-./cmake_hiprtc 
-ldd ./cmake_hiprtc 
+./test
+ldd ./test
 cd ../../../
 
 
