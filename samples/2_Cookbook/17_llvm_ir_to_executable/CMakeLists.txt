@@ -2,9 +2,6 @@ project(llvm_ir_to_exe)
 
 cmake_minimum_required(VERSION 3.10)
 
-message(STATUS "This sample is temporarily disabled until fix for SWDEV-448422 is available.")
-return()
-
 if(UNIX)
   if(NOT DEFINED ROCM_PATH)
     set(ROCM_PATH "/opt/rocm" CACHE STRING "Default ROCM installation directory.")
@@ -44,7 +41,7 @@ set(SQ_IR_EXE ${CMAKE_CURRENT_BINARY_DIR}/square_ir.out)
 set(MCIN_OBJ_GEN ${CMAKE_CURRENT_SOURCE_DIR}/hip_obj_gen.mcin)
 
 if(NOT DEFINED GPU_ARCH)
-  set(GPU_ARCH  gfx900 gfx906 gfx908 gfx90a gfx940 gfx941 gfx942 gfx1010 gfx1030 gfx1100 gfx1101 gfx1102 gfx1103)
+  set(GPU_ARCH  gfx90a:xnack+ gfx942:xnack+)
 endif()
 
 if(TARGET build_cookbook)
