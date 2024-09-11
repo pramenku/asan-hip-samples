@@ -310,8 +310,8 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-./hip_vulkan 
-ldd ./hip_vulkan 
+./hipVulkan 
+ldd ./hipVulkan 
 cd ../../../
 
 echo
