@@ -1,4 +1,4 @@
-Build procedure
+ Build procedure
 
 The CMakeLists.txt at hip-tests/samples folder is currently used for packaging purpose.
 We provide Makefile and CMakeLists.txt to build the samples seperately.
