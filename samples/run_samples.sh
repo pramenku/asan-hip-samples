@@ -14,7 +14,7 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-#./bit_extract 
+./bit_extract 
 ldd ./bit_extract | grep -i asan 
 cd ../../../
 
@@ -55,28 +55,28 @@ ldd ./square | grep -i asan
 cd ../../../
 
 
-#echo
-#echo "=============1_Utils/hipDispatchLatency" 
-#cd 1_Utils/hipDispatchLatency
-#rm -rf build && mkdir -p build
-#cd build
-#cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
-#make 
-#./hipDispatchLatency  
-#ldd ./hipDispatchLatency | grep -i asan  
-#cd ../../../
+echo
+echo "=============1_Utils/hipDispatchLatency" 
+cd 1_Utils/hipDispatchLatency
+rm -rf build && mkdir -p build
+cd build
+cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
+make 
+./hipDispatchLatency  
+ldd ./hipDispatchLatency | grep -i asan  
+cd ../../../
 
 
-#echo
-#echo "=============1_Utils/hipInfo========" 
-#cd 1_Utils/hipInfo
-#rm -rf build && mkdir -p build
-#cd build
-#cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
-#make 
-#./hipInfo 
-#ldd ./hipInfo 
-#cd ../../../
+echo
+echo "=============1_Utils/hipInfo========" 
+cd 1_Utils/hipInfo
+rm -rf build && mkdir -p build
+cd build
+cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
+make 
+./hipInfo 
+ldd ./hipInfo 
+cd ../../../
 
 
 echo
@@ -86,7 +86,7 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-#./MatrixTranspose 
+./MatrixTranspose 
 ldd ./MatrixTranspose 
 cd ../../../
 
@@ -97,7 +97,7 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-#./hipEvent 
+./hipEvent 
 ldd ./hipEvent 
 cd ../../../
 
@@ -188,7 +188,7 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-#./inline_asm 
+./inline_asm 
 ldd ./inline_asm 
 cd ../../../
 
@@ -211,7 +211,7 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-./MatrixTranspose1 
+LD_PRELOAD=$(clang -print-file-name=libclang_rt.asan-x86_64.so) ./MatrixTranspose1 
 ldd ./MatrixTranspose1
 cd ../../../
 
@@ -222,7 +222,7 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-#./occupancy 
+./occupancy 
 ldd ./occupancy 
 cd ../../../
 
@@ -266,9 +266,9 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm ..
 make
-./square_asm.out 
+LD_PRELOAD=$(clang -print-file-name=libclang_rt.asan-x86_64.so) ./square_asm.out 
 ldd ./square_asm.out 
-cd ../../../../
+cd ../../../
 
 echo
 echo "==============================2_Cookbook/17_llvm_ir_to_executable=============" 
@@ -277,9 +277,9 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm ..
 make 
-./square_ir.out 
+LD_PRELOAD=$(clang -print-file-name=libclang_rt.asan-x86_64.so) ./square_ir.out 
 ldd ./square_ir.out 
-cd ../../../../
+cd ../../../
 
 echo
 echo "=======================2_Cookbook/18_cmake_hip_device================" 
@@ -299,7 +299,7 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-./test_fortran
+LD_PRELOAD=$(clang -print-file-name=libclang_rt.asan-x86_64.so) ./test_fortran
 ldd ./test_fortran
 cd ../../../ 
 
@@ -332,7 +332,7 @@ rm -rf build && mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_C_COMPILER=/opt/rocm/llvm/bin/clang -DCMAKE_PREFIX_PATH=/opt/rocm .. 
 make 
-./square
+LD_PRELOAD=$(clang -print-file-name=libclang_rt.asan-x86_64.so) ./square
 ldd ./square
 cd ../../../
 
